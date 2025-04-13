@@ -15,7 +15,7 @@ class Person:
 
 
 def create_person_list(people: list[dict]) -> list:
-    persons = [Person(p["name"], p["age"]) for p in people]
+    _ = [Person(p["name"], p["age"]) for p in people]
 
     person_list = []
     for person_dict in people:
@@ -29,4 +29,3 @@ def create_person_list(people: list[dict]) -> list:
         person_list.append(person)
 
     return person_list
-
