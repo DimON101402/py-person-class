@@ -14,8 +14,8 @@ class Person:
             setattr(spouse, reverse_role, self)
 
 
-def create_person_list(people: list[dict]) -> list:
-    _ = [Person(p["name"], p["age"]) for p in people]
+def create_person_list(people: list[dict]) -> list[Person]:
+    [Person(p["name"], p["age"]) for p in people]
 
     person_list = []
     for person_dict in people:
