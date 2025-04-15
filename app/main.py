@@ -1,12 +1,12 @@
 class Person:
     people = {}
 
-    def __init__(self, name: str, age: int) -> None:
+    def __init__(self, name: str, age: int):
         self.name = name
         self.age = age
         Person.people[name] = self
 
-    def set_spouse(self, role: str, spouse_name: str) -> None:
+    def set_spouse(self, role: str, spouse_name: str):
         if spouse_name in Person.people:
             spouse = Person.people[spouse_name]
             setattr(self, role, spouse)
@@ -14,18 +14,18 @@ class Person:
             setattr(spouse, reverse_role, self)
 
 
-def create_person_list(people: list[dict]) -> list:
-    [Person(p["name"], p["age"]) for p in people]
-
+def create_person_list(people: list[dict]) -> list[Person]:
     person_list = []
+
+    for person_dict in people:
+        Person(person_dict["name"], person_dict["age"])
+
     for person_dict in people:
         person = Person.people[person_dict["name"]]
-
-        if person_dict.get("wife"):
+        if "wife" in person_dict and person_dict["wife"]:
             person.set_spouse("wife", person_dict["wife"])
-        elif person_dict.get("husband"):
+        elif "husband" in person_dict and person_dict["husband"]:
             person.set_spouse("husband", person_dict["husband"])
-
         person_list.append(person)
 
     return person_list
