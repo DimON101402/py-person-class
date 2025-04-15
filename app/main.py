@@ -20,7 +20,6 @@ def create_person_list(people: list[dict[str, str | int]]) -> list[Person]:
     person_list: list[Person] = []
     for person_dict in people:
         person = Person.people[person_dict["name"]]
-
         if person_dict.get("wife"):
             person.set_spouse("wife", person_dict["wife"])
         elif person_dict.get("husband"):
